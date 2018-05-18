@@ -4,7 +4,7 @@
         <h1>{{type}}</h1>
  <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="ruleForm"
   >
-   
+
     <el-form-item label="账号" prop="account">
         <el-input type="text" v-model="ruleForm2.account" auto-complete="off"></el-input>
     </el-form-item>
@@ -18,11 +18,12 @@
 </el-form>
 
     </div>
- 
+
 </template>
 
 <script>
 import { MessageBox } from 'element-ui';
+import BASEURL from './baseUrl'
 export default {
 	created: function() {
 		if (this.$route.params.type === 'edit') {
@@ -50,11 +51,11 @@ export default {
                 pwd:''
 			},
 			rules2: {
-				
-			
+
+
                 account: [{ validator: check, trigger: 'blur' }],
                 pwd:[{ validator: check, trigger: 'blur' }]
-				
+
 			},
 		};
 	},
@@ -63,7 +64,7 @@ export default {
 			this.$refs[formName].validate(valid => {
 				if (valid) {
                     console.log(this.ruleForm2);
-                    var that=this 
+                    var that=this
                     var data=null
                     if(this.type==='修改'){
                         data=Object.assign({type:'edit'},this.ruleForm2)
@@ -71,10 +72,10 @@ export default {
                     if(this.type==='添加'){
                           data=Object.assign({type:'add'},this.ruleForm2)
                     }
-                   
+
                     console.log(data,this.type)
                     $.ajax({
-                        url:'http://118.25.23.201:3000/sjy/edit',
+                        url:BASEURL+'/edit',
                         type:'post',
                         dataType:'json',
                         data:data

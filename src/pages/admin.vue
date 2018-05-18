@@ -21,8 +21,8 @@
 
       <el-container>
         <el-header style="text-align: right; font-size: 12px">
-          
-        
+
+
          <el-button>{{username}}</el-button>
           <el-button plain round @click='loginout'>登出</el-button>
         </el-header>
@@ -49,7 +49,7 @@ import {getCookie,delCookie} from '../utils'
       },
       loginout(){
         delCookie('userdata')
-        window.reload()
+        location.reload()
       }
     },
     data() {
@@ -60,7 +60,7 @@ import {getCookie,delCookie} from '../utils'
     },
     created:function(){
       this.username=JSON.parse(getCookie('userdata')).username
-    
+
     },
     name:'admin'
   }
